@@ -18,6 +18,7 @@ const App = () => {
   const [loading, setLoading] = useState(0);
   const [totalCnt, setTotalCnt] = useState(0);
   const [page, setPage] = useState(1);
+  const [title, setTitle] = useState("");
   //means movies will be having arr of objects (Array destructuring CONCEPT)
 
   useEffect(() => {
@@ -32,6 +33,26 @@ const App = () => {
     setLoading(0);
     // console.log(data);
     setTotalCnt(data.totalResults);
+    setMovies(data.Search);
+    setTitle(title);
+    console.log(data, page);
+  };
+
+  const handlePrevClick = async () => {
+    setPage(page - 1);
+    setLoading(true);
+    const response = await fetch(`${API_URL}&s=${title}&page=${page - 1}`);
+    const data = await response.json();
+    setLoading(false);
+    setMovies(data.Search);
+  };
+  const handleNextClick = async () => {
+    setPage(page + 1);
+    setLoading(true);
+    const response = await fetch(`${API_URL}&s=${title}&page=${page + 1}`);
+    const data = await response.json();
+    setLoading(false);
+    // console.log(data);
     setMovies(data.Search);
   };
 
@@ -68,19 +89,14 @@ const App = () => {
       )}
 
       <div className="container d-flex justify-content-between p-5">
-        <button
-          type="button"
-          className="btn btn-dark"
-          // onClick={handlePrevClick}
-          disabled={page <= 1}
-        >
+        <button type="button" onClick={handlePrevClick} disabled={page <= 1}>
           &larr; Prev
         </button>
+        &nbsp;
         <button
           type="button"
-          className="btn btn-dark"
           disabled={page + 1 > Math.ceil(totalCnt / PageSz)}
-          // onClick={handleNextClick}
+          onClick={handleNextClick}
         >
           Next &rarr;
         </button>

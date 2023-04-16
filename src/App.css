@@ -183,12 +183,38 @@ h1 {
   opacity: 0.3;
 }
 
+/* Using this background of movie title is made transparent */
 .movie:hover div:nth-of-type(3) {
   background-color: transparent;
 }
 
 .movie:hover div:nth-of-type(1) {
   opacity: 1;
+}
+button {
+  padding: 10px 20px;
+  background-color: #6f6d6d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover {
+  color: #545454;
+  background-color: white;
+}
+
+button:disabled {
+  background-color: #a0a0a0;
+  cursor: default;
+}
+
+button:disabled:hover {
+  background-color: #c1c0c0;
 }
 
 @media screen and (max-width: 600px) {
