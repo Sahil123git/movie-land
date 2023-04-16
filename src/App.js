@@ -4,17 +4,20 @@ import React, { useState, useEffect } from "react";
 
 import MovieCard from "./MovieCard";
 import SearchIcon from "./search.svg";
-import loadingImg from "./loading.gif";
 import "./App.css";
+import LoadingComponent from "./Loading";
 
 const API_KEY = "5038fa50";
 const API_URL = `https://www.omdbapi.com?apikey=${API_KEY}`;
+const PageSz = 10;
 // const API_URL = "https://www.omdbapi.com?apikey=5038fa50";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState(""); //here initial val is empty string
   const [movies, setMovies] = useState([]); //here initial value of movies is empty array
   const [loading, setLoading] = useState(0);
+  const [totalCnt, setTotalCnt] = useState(0);
+  const [page, setPage] = useState(1);
   //means movies will be having arr of objects (Array destructuring CONCEPT)
 
   useEffect(() => {
@@ -28,6 +31,7 @@ const App = () => {
     const data = await response.json();
     setLoading(0);
     // console.log(data);
+    setTotalCnt(data.totalResults);
     setMovies(data.Search);
   };
 
@@ -49,14 +53,12 @@ const App = () => {
       </div>
 
       {loading ? (
-        <div className="loading">
-          <img src={loadingImg} alt="loading" width="550" height="500" />;
-        </div>
+        <LoadingComponent />
       ) : movies?.length > 0 ? (
         <div className="container">
           {/*iterating over arr of objects using map*/}
-          {movies.map((movie) => (
-            <MovieCard movie={movie} />
+          {movies.map((movie, index) => (
+            <MovieCard key={index} movie={movie} />
           ))}
         </div>
       ) : (
@@ -64,6 +66,25 @@ const App = () => {
           <h2>No movies found</h2>
         </div>
       )}
+
+      <div className="container d-flex justify-content-between p-5">
+        <button
+          type="button"
+          className="btn btn-dark"
+          // onClick={handlePrevClick}
+          disabled={page <= 1}
+        >
+          &larr; Prev
+        </button>
+        <button
+          type="button"
+          className="btn btn-dark"
+          disabled={page + 1 > Math.ceil(totalCnt / PageSz)}
+          // onClick={handleNextClick}
+        >
+          Next &rarr;
+        </button>
+      </div>
     </div>
   );
 };
