@@ -15,10 +15,13 @@ const Home = () => {
   const [totalCnt, setTotalCnt] = useState(0);
   const [page, setPage] = useState(1);
   const [title, setTitle] = useState("");
+  const [category, setCategory] = useState(0);
   //means movies will be having arr of objects (Array destructuring CONCEPT)
 
   useEffect(() => {
     //when user refresh the site by default key word will be batman
+    // console.log(page);
+    // console.log(searchTerm, " Printing Search");
     searchMovies("Batman");
   }, []);
 

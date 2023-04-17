@@ -15,7 +15,7 @@ function MovieDetails() {
     // console.log(id);
     // const temp = `${API_URL}&i=${id}`;
     // console.log(temp);
-    const response = await fetch(`${API_URL}&i=${id}`);
+    const response = await fetch(`${API_URL}&i=${id}&plot=full`);
     const data = await response.json();
     setMovieData(data);
     console.log(data);
@@ -40,7 +40,12 @@ function MovieDetails() {
           <h1>{movieData.Title}</h1>
           <div className="movie-info">
             <img
-              src={movieData.Poster}
+              // src={movieData.Poster}
+              src={
+                movieData.Poster !== "N/A"
+                  ? movieData.Poster
+                  : "https://via.placeholder.com/500"
+              }
               className="poster"
               alt="Poster"
               height="350px"
