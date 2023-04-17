@@ -69,9 +69,7 @@ const Home = () => {
   };
   const handleNextClick = async () => {
     setPage(page + 1);
-    console.log(page);
-    console.log(page + 1);
-    console.log(Math.ceil(totalCnt / PageSz));
+    // console.log(page);
     console.log(`${API_URL}&s=${title}&type=${category}`);
     setLoading(true);
     const response = await fetch(

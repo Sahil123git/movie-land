@@ -10,7 +10,7 @@
   margin: 0 10px; /* add some space between each category */
   padding: 10px; /* add some padding to make the categories easier to click */
   cursor: pointer; /* change the cursor to a pointer when hovering over a category */
-  color: #fff; /* set the text color to white */
+  color: rgba(249, 211, 180, 1); /* set the text color to white */
   font-weight: bold; /* make the text bold */
   text-transform: uppercase; /* capitalize the text */
   transition: all 0.2s ease-in-out; /* add a smooth transition effect */
@@ -30,7 +30,7 @@
 /* Hover style for the selected category */
 .category-item.active:hover {
   background-color: #333; /* set the background color to a dark gray */
-  color: #fff; /* set the text color to white */
+  color: rgba(249, 211, 180, 1); /* set the text color to white */
 }
 
 /* Media query for smaller screens */
