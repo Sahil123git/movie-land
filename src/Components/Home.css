@@ -1,0 +1,46 @@
+/* Container for the categories */
+.categories {
+  display: flex; /* display the categories in a row */
+  justify-content: center; /* center the categories horizontally */
+  margin: 20px 0; /* add some space above and below the categories */
+}
+
+/* Style for each category */
+.category-item {
+  margin: 0 10px; /* add some space between each category */
+  padding: 10px; /* add some padding to make the categories easier to click */
+  cursor: pointer; /* change the cursor to a pointer when hovering over a category */
+  color: #fff; /* set the text color to white */
+  font-weight: bold; /* make the text bold */
+  text-transform: uppercase; /* capitalize the text */
+  transition: all 0.2s ease-in-out; /* add a smooth transition effect */
+}
+
+/* Style for the selected category */
+.category-item.active {
+  background-color: #fff; /* set the background color to white */
+  color: #333; /* set the text color to a dark gray */
+}
+
+/* Hover style for each category */
+.category-item:hover {
+  background-color: #555; /* set the background color to a darker gray */
+}
+
+/* Hover style for the selected category */
+.category-item.active:hover {
+  background-color: #333; /* set the background color to a dark gray */
+  color: #fff; /* set the text color to white */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .categories {
+    flex-wrap: wrap; /* allow the categories to wrap to the next line */
+  }
+
+  .category-item {
+    flex: 1 0 50%; /* make each category take up half of the available space */
+    margin: 5px; /* reduce the margin between categories */
+  }
+}
