@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LoadingComponent from "./Loading";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./MovieDetails.css";
 
 const API_KEY = "5038fa50";
@@ -9,6 +9,7 @@ const API_URL = `https://www.omdbapi.com?apikey=${API_KEY}`;
 function MovieDetails() {
   const [loading, setLoading] = useState(0);
   const [movieData, setMovieData] = useState({});
+  const navigate = useNavigate();
 
   const searchMovies = async (id) => {
     setLoading(1);
@@ -21,7 +22,7 @@ function MovieDetails() {
     console.log(data);
     setLoading(0);
   };
-
+  // console.log(useParams());
   const { id } = useParams();
   useEffect(() => {
     //when user refresh the site by default key word will be batman
@@ -30,6 +31,9 @@ function MovieDetails() {
     // console.log(movieData);
   }, [id]);
 
+  function backHome() {
+    navigate("/");
+  }
   //   searchMovies(id);
   return (
     <div className="outer">
@@ -62,6 +66,7 @@ function MovieDetails() {
             <h2>Plot</h2>
             <h3>{movieData.Plot}</h3>
           </div>
+          <button onClick={backHome}>Back</button>
         </div>
       )}
     </div>
